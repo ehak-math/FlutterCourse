@@ -1,12 +1,14 @@
 void main() {
   // 1 - iLike
   const String iLike = 'I like pizza';
+  print(iLike);
 
   // 2 - toppings
   String toppings = 'with tomatoes';
   toppings += " and cheese";
+  print(toppings);
 
-  // 3 - message
+  // // 3 - message
   final String message = '$iLike $toppings';
   print(message);
 
