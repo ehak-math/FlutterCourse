@@ -1,21 +1,21 @@
 void main() {
   // 1 - iLike
-  String iLike = 'I like pizza';
+  const String iLike = 'I like pizza';
 
   // 2 - toppings
   String toppings = 'with tomatoes';
   toppings += " and cheese";
 
   // 3 - message
-  String message = '$iLike $toppings';
+  final String message = '$iLike $toppings';
   print(message);
 
   // 4 - rbgColors
-  List<String> rbgColors = ['red', 'blue', 'green'];
+  final List<String> rbgColors = ['red', 'blue', 'green'];
   print(rbgColors);
 
   // 5 - weekDays
-  List<String> weekDays = ['monday', 'tuesday', 'wednesday'];
+  final List<String> weekDays = ['monday', 'tuesday', 'wednesday'];
   weekDays.add('thursday');
   print(weekDays);
 
