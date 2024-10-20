@@ -45,22 +45,22 @@ class Bank {
 
 void main() {
   Bank myBank = Bank(name: "CADT Bank");
-  BankAccount ehakAccount = myBank.createAccount(100, 'Ehak');
+  BankAccount ehakAccount = myBank.createAccount(5002443, 'Ehak');
 
   print(ehakAccount.balance()); // Balance: $0
-  ehakAccount.credit(100);
-  print(ehakAccount.balance()); // Balance: $100
+  ehakAccount.credit(200);
+  print(ehakAccount.balance()); // Balance: $200
   ehakAccount.withdraw(50);
   print(ehakAccount.balance()); // Balance: $50
 
   try {
-    ehakAccount.withdraw(75); // This will throw an exception
+    ehakAccount.withdraw(160); // This will throw an exception
   } catch (e) {
     print(e); // Output: Insufficient balance for withdrawal!
   }
 
   try {
-    myBank.createAccount(100, 'Vikol'); // This will throw an exception
+    myBank.createAccount(5002443, 'Vikol'); // This will throw an exception
   } catch (e) {
     print(e); // Output: Account with ID 100 already exists!
   }
