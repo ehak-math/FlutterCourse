@@ -3,8 +3,10 @@ class BankAccount {
   String accountOwner;
   double _balance = 0.0;
 
+  // Constructor to initialize a bank account with an ID and owner
   BankAccount(this.accountId, this.accountOwner);
 
+  // Method to return the current balance of the account
   double balance() => _balance;
 
 
