@@ -13,11 +13,10 @@ void main(){
           children: [
             CustomCard(
                 text: 'HELLO',
-                color: Colors.green[600],
               ),
             CustomCard(
                 text: 'OOP',
-                color: Colors.blue[600],
+                color: Colors.green[600],
               ),
             CustomCard(
                 text: 'DART',
@@ -36,7 +35,7 @@ void main(){
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
-    super.key, required this.text, this.color, this.gradientColors
+    super.key, required this.text, this.color = Colors.blue, this.gradientColors
   });
 
   final String text;
