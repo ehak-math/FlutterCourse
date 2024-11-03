@@ -1,12 +1,78 @@
 import 'package:flutter/material.dart';
 
+
 // Enum for weather conditions
 enum WeatherCondition { sunny, rainy, cloudy, snowy }
 
+void main(){
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: const Text("Weather Forecast"),
+      ),
+      body: Container(
+        color: const Color(0xff364860),
+        child: const Padding(
+          padding: EdgeInsets.all(20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              WeatherForecast(
+                weatherCondition: WeatherCondition.sunny,
+                maxTemperature: 30,
+                minTemperature: 27,
+                dayOfWeek: "Sun",
+              ),
+              WeatherForecast(
+                weatherCondition: WeatherCondition.cloudy,
+                maxTemperature: 25,
+                minTemperature: 20,
+                dayOfWeek: "Mon",
+              ),
+              WeatherForecast(
+                weatherCondition: WeatherCondition.rainy,
+                maxTemperature: 20,
+                minTemperature: 15,
+                dayOfWeek: "Tue",
+              ),
+              WeatherForecast(
+                weatherCondition: WeatherCondition.snowy,
+                maxTemperature: 10,
+                minTemperature: -5,
+                dayOfWeek: "Wed",
+              ),
+              WeatherForecast(
+                weatherCondition: WeatherCondition.sunny,
+                maxTemperature: 36,
+                minTemperature: 27,
+                dayOfWeek: "Thu",
+              ),
+              WeatherForecast(
+                weatherCondition: WeatherCondition.rainy,
+                maxTemperature: 26,
+                minTemperature: 19,
+                dayOfWeek: "Fri",
+              ),
+              WeatherForecast(
+                weatherCondition: WeatherCondition.cloudy,
+                maxTemperature: 20,
+                minTemperature: 16,
+                dayOfWeek: "Sat",
+              ),
+              
+            ],
+          ),
+        ),
+      )
+    ),
+  ));
+}
+
 class WeatherForecast extends StatelessWidget {
+
   final WeatherCondition weatherCondition;
-  final double minTemperature;
-  final double maxTemperature;
+  final int minTemperature;
+  final int maxTemperature;
   final String dayOfWeek;
 
   const WeatherForecast({
@@ -14,146 +80,80 @@ class WeatherForecast extends StatelessWidget {
     required this.weatherCondition,
     required this.minTemperature,
     required this.maxTemperature,
-    required this.dayOfWeek,
+    required this.dayOfWeek
   });
-  // Method to get color based on weather condition
-  Color _getBackgroundColor() {
+
+  Color _getColor(){
     switch (weatherCondition) {
       case WeatherCondition.sunny:
-        return Colors.yellow[200]!;
+        return Colors.yellow;
       case WeatherCondition.rainy:
-        return Colors.blue[200]!;
+        return Colors.blue;
       case WeatherCondition.cloudy:
-        return Colors.grey[300]!;
+        return Colors.grey;
       case WeatherCondition.snowy:
         return Colors.white;
     }
   }
-
-  // Method to get icon based on weather condition
-  IconData _getWeatherIcon() {
+  IconData _getIcon(){
     switch (weatherCondition) {
       case WeatherCondition.sunny:
-        return Icons.circle;
+        return Icons.sunny;
       case WeatherCondition.rainy:
-        return Icons.beach_access; // Rainy icon
+        return Icons.beach_access_rounded;
       case WeatherCondition.cloudy:
         return Icons.cloud;
       case WeatherCondition.snowy:
         return Icons.ac_unit;
+        
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      color: _getBackgroundColor(),
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        Card(
+          color: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: Column(
               children: [
-                Text(
-                  dayOfWeek,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Text(dayOfWeek,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
                 ),
-                const SizedBox(height: 5),
+                ),
+                const SizedBox(height: 15,),
+                Icon(
+                  size: 40,
+                  _getIcon(),
+                  color: _getColor(),
+                ),
+                const SizedBox(height: 15,),
                 Row(
                   children: [
-                    Icon(
-                      _getWeatherIcon(),
-                      size: 30,
-                      color: Colors.black54,
+                    Text('${maxTemperature.toStringAsFixed(0)}°',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
                     ),
-                    const SizedBox(width: 10),
-                    Text(
-                      '${maxTemperature.toStringAsFixed(0)}°',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
                     ),
                     const SizedBox(width: 5),
-                    Text(
-                      '${minTemperature.toStringAsFixed(0)}°',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black54,
-                      ),
+                    Text('${minTemperature.toStringAsFixed(0)}°',
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Colors.grey
                     ),
+                    )
                   ],
-                ),
+                )
               ],
             ),
-            // Optionally, you can add more information on the right side
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
-}
-void main() {
-  runApp(MaterialApp(
-    title: 'Weather Forecast',
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text('Weekly Weather Forecast'),
-      ),
-      body: ListView(
-        children: const [
-          WeatherForecast(
-            weatherCondition: WeatherCondition.sunny,
-            minTemperature: 15.0,
-            maxTemperature: 25.0,
-            dayOfWeek: 'Sun',
-          ),
-          WeatherForecast(
-            weatherCondition: WeatherCondition.rainy,
-            minTemperature: 12.0,
-            maxTemperature: 18.0,
-            dayOfWeek: 'Mon',
-          ),
-          WeatherForecast(
-            weatherCondition: WeatherCondition.cloudy,
-            minTemperature: 9.0,
-            maxTemperature: 17.0,
-            dayOfWeek: 'Tue',
-          ),
-          WeatherForecast(
-            weatherCondition: WeatherCondition.cloudy,
-            minTemperature: 8.0,
-            maxTemperature: 14.0,
-            dayOfWeek: 'Wed',
-          ),
-          WeatherForecast(
-            weatherCondition: WeatherCondition.snowy,
-            minTemperature: 5.0,
-            maxTemperature: 10.0,
-            dayOfWeek: 'Thu',
-          ),
-          WeatherForecast(
-            weatherCondition: WeatherCondition.sunny,
-            minTemperature: 4.0,
-            maxTemperature: 12.0,
-            dayOfWeek: 'Fri',
-          ),
-          WeatherForecast(
-            weatherCondition: WeatherCondition.sunny,
-            minTemperature: 3.0,
-            maxTemperature: 15.0,
-            dayOfWeek: 'Sat',
-          ),
-        ],
-      ),
-    ),
-  ));
 }
