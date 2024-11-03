@@ -11,56 +11,60 @@ void main(){
         title: const Text("Weather Forecast"),
       ),
       body: Container(
+        
         color: const Color(0xff364860),
-        child: const Padding(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              WeatherForecast(
-                weatherCondition: WeatherCondition.sunny,
-                maxTemperature: 30,
-                minTemperature: 27,
-                dayOfWeek: "Sun",
-              ),
-              WeatherForecast(
-                weatherCondition: WeatherCondition.cloudy,
-                maxTemperature: 25,
-                minTemperature: 20,
-                dayOfWeek: "Mon",
-              ),
-              WeatherForecast(
-                weatherCondition: WeatherCondition.rainy,
-                maxTemperature: 20,
-                minTemperature: 15,
-                dayOfWeek: "Tue",
-              ),
-              WeatherForecast(
-                weatherCondition: WeatherCondition.snowy,
-                maxTemperature: 10,
-                minTemperature: -5,
-                dayOfWeek: "Wed",
-              ),
-              WeatherForecast(
-                weatherCondition: WeatherCondition.sunny,
-                maxTemperature: 36,
-                minTemperature: 27,
-                dayOfWeek: "Thu",
-              ),
-              WeatherForecast(
-                weatherCondition: WeatherCondition.rainy,
-                maxTemperature: 26,
-                minTemperature: 19,
-                dayOfWeek: "Fri",
-              ),
-              WeatherForecast(
-                weatherCondition: WeatherCondition.cloudy,
-                maxTemperature: 20,
-                minTemperature: 16,
-                dayOfWeek: "Sat",
-              ),
-              
-            ],
+        child: const SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                WeatherForecast(
+                  weatherCondition: WeatherCondition.sunny,
+                  maxTemperature: 30,
+                  minTemperature: 27,
+                  dayOfWeek: "Sun",
+                ),
+                WeatherForecast(
+                  weatherCondition: WeatherCondition.cloudy,
+                  maxTemperature: 25,
+                  minTemperature: 20,
+                  dayOfWeek: "Mon",
+                ),
+                WeatherForecast(
+                  weatherCondition: WeatherCondition.rainy,
+                  maxTemperature: 20,
+                  minTemperature: 15,
+                  dayOfWeek: "Tue",
+                ),
+                WeatherForecast(
+                  weatherCondition: WeatherCondition.snowy,
+                  maxTemperature: 10,
+                  minTemperature: -5,
+                  dayOfWeek: "Wed",
+                ),
+                WeatherForecast(
+                  weatherCondition: WeatherCondition.sunny,
+                  maxTemperature: 36,
+                  minTemperature: 27,
+                  dayOfWeek: "Thu",
+                ),
+                WeatherForecast(
+                  weatherCondition: WeatherCondition.rainy,
+                  maxTemperature: 26,
+                  minTemperature: 19,
+                  dayOfWeek: "Fri",
+                ),
+                WeatherForecast(
+                  weatherCondition: WeatherCondition.cloudy,
+                  maxTemperature: 20,
+                  minTemperature: 16,
+                  dayOfWeek: "Sat",
+                ),
+                
+              ],
+            ),
           ),
         ),
       )
