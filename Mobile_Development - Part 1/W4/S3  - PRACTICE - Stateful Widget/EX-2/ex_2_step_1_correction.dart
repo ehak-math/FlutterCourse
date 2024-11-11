@@ -44,7 +44,7 @@ class _FavoriteCardState extends State<FavoriteCard> {
   bool isFavorite = true;
   void toggleFavorite(){
     setState(() {
-      isFavorite = false;
+      isFavorite = !isFavorite;
     });
   }
 

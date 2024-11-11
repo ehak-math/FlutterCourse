@@ -34,7 +34,7 @@ class _SelectableButtonState extends State<SelectableButton> {
 
   void toggleSelection(){
     setState(() {
-      isSelected = true;
+      isSelected = !isSelected;
     });
   }
   String get _textlabel  => isSelected ? "Selected" : "Not Selected";
