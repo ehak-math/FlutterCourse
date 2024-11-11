@@ -17,10 +17,10 @@ class Menu {
     items.add(item);
   }
 
-  void viewMenu() {
+    void viewMenu() {
     print("\n--- Menu ---");
-    for (var item in items) {
-      print(item);
+    for (int i = 0; i < items.length; i++) {
+      print("${i + 1}. ${items[i]}");
     }
   }
 }
@@ -74,8 +74,9 @@ class Order {
 
   @override
   String toString() {
-    return 'Order #$orderID for ${customer.name}: ${items.map((item) => item.name).join(", ")} - Status: $orderStatus, Payment: $paymentStatus, Total: \$${totalPrice.toStringAsFixed(2)}';
+    return 'Order #$orderID for ${customer.name} (Contact: ${customer.contactNumber}): ${items.map((item) => item.name).join(", ")} - Status: $orderStatus, Payment: $paymentStatus, Total: \$${totalPrice.toStringAsFixed(2)}';
   }
+
 }
 
 class Restaurant {
@@ -205,20 +206,18 @@ void main() {
 
           bool ordering = true;
           while (ordering) {
-            stdout.write("Enter the name of the item to add to the order (or type 'done' to finish): ");
-            String? itemName = stdin.readLineSync();
-            if (itemName != null && itemName.toLowerCase() == 'done') {
+            stdout.write("Enter the number of the item to add to the order (or type 'done' to finish): ");
+            String? input = stdin.readLineSync();
+            if (input != null && input.toLowerCase() == 'done') {
               ordering = false;
-            } else if (itemName != null) {
-              try {
-                // Convert both item names to lowercase for a case-insensitive match
-                var menuItem = restaurant.menu.items.firstWhere(
-                  (item) => item.name.toLowerCase() == itemName.toLowerCase(),
-                );
+            } else if (input != null) {
+              int? itemNumber = int.tryParse(input);
+              if (itemNumber != null && itemNumber > 0 && itemNumber <= restaurant.menu.items.length) {
+                MenuItem menuItem = restaurant.menu.items[itemNumber - 1]; // Convert to 0-indexed
                 order.addItem(menuItem);
                 print("${menuItem.name} added to the order.");
-              } catch (e) {
-                print("Item not found in menu.");
+              } else {
+                print("Invalid item number. Please choose a valid number from the menu.");
               }
             }
           }
