@@ -4,11 +4,13 @@ import 'package:quiz/model/quiz.dart';
 class QuestionScreen extends StatelessWidget {
   final Question question;
   final Function(String) onTap;
+  final VoidCallback onSkip;
 
   const QuestionScreen({
     super.key,
     required this.question,
     required this.onTap,
+    required this.onSkip
   });
 
   @override
@@ -42,8 +44,26 @@ class QuestionScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 30,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton.icon(
+                      label: const Text("Skip", style: TextStyle(color: Colors.white),),
+                      icon: const Icon(Icons.skip_next, color: Colors.white,),
+                      iconAlignment: IconAlignment.end,
+                      onPressed: onSkip, // Handle skip action
+                      style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.black,
+                        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                        backgroundColor: const Color(0xff64B5F6),
+                      ),
+                    ),
+                ],
+              )
             ],
           ),
+
         ),
       );
   }

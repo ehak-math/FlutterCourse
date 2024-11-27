@@ -46,24 +46,59 @@ class _QuizAppState extends State<QuizApp> {
     );
     submission.addAnswer(userAnswer);
 
+    skipQuestion();
+  }
+
+  void skipQuestion() {
     // Move to the next question or show result if the quiz is finished
     if (currentQuestionIndex < quiz.questions.length - 1) {
       setState(() {
         currentQuestionIndex++;
       });
     } else {
-      // Quiz finished, switch to result screen
+      // If it's the last question, switch to result screen
       switchScreen('result');
     }
   }
 
   // Function to restart the quiz
   void restartQuiz() {
-    setState(() {
+    if (submission.getScore() == 0) {
+      setState(() {
+        currentQuestionIndex = 0;
+        submission.removeAnswers();
+        switchScreen('welcome');
+      });
+    }else{
+      setState(() {
       currentQuestionIndex = 0;  // Restart the quiz from the first question
       submission.removeAnswers();  // Clear all answers in submission
-      switchScreen('question');  // Go back to the welcome screen
+      switchScreen('question');  // Go back to the question screen
     });
+    }
+  }
+
+
+  Widget _builScreen(){
+    switch (currentScreen) {
+      case 'question':
+        return QuestionScreen(
+          question: quiz.questions[currentQuestionIndex],
+          onTap: (answer) => submitAnswer(answer),
+          onSkip: skipQuestion, // Add the skip functionality
+        );
+      case 'result':
+        return ResultScreen(
+          submission: submission,
+          onRestart: restartQuiz, // Restart callback
+          quiz: quiz, // Pass quiz for result display
+        );
+      default:
+        return WelcomeScreen(
+          quiz: quiz, 
+          onStart: () => switchScreen('question')
+        ); 
+    }
   }
 
   @override
@@ -78,18 +113,7 @@ class _QuizAppState extends State<QuizApp> {
         ),
         backgroundColor: appColor,
         body: Center(
-          child: currentScreen == 'welcome'
-              ? WelcomeScreen(onStart: () => switchScreen('question'), quiz: quiz)
-              : currentScreen == 'question'
-                  ? QuestionScreen(
-                      question: quiz.questions[currentQuestionIndex], // Pass current question
-                      onTap: (answer) => submitAnswer(answer)// Pass answer callback
-                    )
-                  : ResultScreen(
-                      submission: submission,
-                      onRestart: restartQuiz,  // Restart callback
-                      quiz: quiz,  // Pass quiz for result display
-                    ),
+          child: _builScreen()
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:quiz/model/quiz.dart';
 
 class Submission {
 
-  Map<Question, Answer> answers ={};
+  Map<Question, Answer> answers = {};
 
   void addAnswer(Answer answer) {
     answers[answer.question] = answer;
