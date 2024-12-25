@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class ApiConstants {
-  static const String apiKey = 'your api key';
+  static const String apiKey = '32bf8e4ad1749d783fd01a5b8242ba42';
   static const String baseUrl = 'https://api.themoviedb.org/3';
 
   static const String basePosterUrl = 'https://image.tmdb.org/t/p/w500';
@@ -148,9 +148,6 @@ class ApiConstants {
     }
   }
 
-  // Add movie to watchlist
-
- // Ensure API methods are imported
 
 // Local storage for watchlist functionality
 static const String _watchlistKey = 'watchlist';

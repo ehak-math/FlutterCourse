@@ -110,7 +110,11 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                   );
                                 } else {
                                   return IconButton(
-                                    icon: const Icon(Icons.bookmark_border, color: Colors.white),
+                                    tooltip: 'Save',
+                                    icon:  const Icon(
+                                      Icons.bookmark_border, 
+                                      color: Colors.white
+                                    ),
                                     onPressed: () async {
                                       await ApiConstants().addToWatchlist(movie);
                                       setState(() {
@@ -150,27 +154,21 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                       Row(
                                         children: [
                                           Text(
-                                            movie.releaseDate.isNotEmpty 
-                                              ? movie.releaseDate.split(',')[1] 
-                                              : '0',
+                                              movie.releaseDate.split(',')[1] ,
                                             style: textTheme.bodyMedium?.copyWith(
                                               color: Colors.grey[600]
                                             ),
                                           ),
                                           const CircleDot(),
                                           Text(
-                                            movie.genres != null 
-                                            ? getGenres(movie.genres!) 
-                                            : ' ', // Format the genres
+                                            getGenres(movie.genres!) ,
                                             style: textTheme.bodyMedium?.copyWith(
                                               color: Colors.grey[600]
                                             ),
                                           ),
                                           const CircleDot(),
                                           Text(
-                                            movie.runtime != null 
-                                            ? getFormatRuntime(movie.runtime!) 
-                                            : ' ',
+                                            getFormatRuntime(movie.runtime!) ,
                                             style: textTheme.bodyMedium?.copyWith(
                                               color: Colors.grey[600]
                                             ),
@@ -212,7 +210,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                     if (snapshot.connectionState == ConnectionState.waiting) {
                                       return const Center(child: CircularProgressIndicator());
                                     } else if (snapshot.hasError) {
-                                      return const Center(child: Text(' '));
+                                      return Center(child: Text('Error: ${snapshot.error}'));
                                     } else if (snapshot.hasData && snapshot.data != null) {
                                       final trailerUrl = snapshot.data!;
                                       return GestureDetector(

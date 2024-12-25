@@ -1,4 +1,5 @@
 import 'package:movie/functions/function.dart';
+import 'package:movie/models/cast.dart';
 
 class Movie {
   final int? runtime;
@@ -12,6 +13,7 @@ class Movie {
   final String releaseDate;
   final double voteAverage;
   final int voteCount;
+  final List<Cast>? cast;
 
   Movie({
     required this.tmdbID,
@@ -25,6 +27,7 @@ class Movie {
     this.runtime,
     this.trailerUrl,
     this.genres,
+    this.cast
   });
 
 
@@ -40,8 +43,8 @@ class Movie {
       voteAverage: json['vote_average'].toDouble(),
       voteCount: json['vote_count'],
       runtime: json['runtime'],
-      trailerUrl: json['trailer_url'],
-      genres: json['genres'],
+      trailerUrl: json['trailer_url'] ?? '',
+      genres: json['genres'] ?? [],
     );
   }
 
