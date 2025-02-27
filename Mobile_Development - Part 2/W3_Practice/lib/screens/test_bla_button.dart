@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/bla_button.dart'; // Import BlaButton
+import '../widgets/bla_button.dart';
 
 class TestBlaButtonScreen extends StatelessWidget {
   const TestBlaButtonScreen({super.key});
@@ -9,7 +9,7 @@ class TestBlaButtonScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Test BlaButton")),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

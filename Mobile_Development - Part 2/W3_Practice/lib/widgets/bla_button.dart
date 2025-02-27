@@ -17,7 +17,7 @@ class BlaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      icon: icon != null ? Icon(icon) : Container(),
+      icon: Icon(icon),
       label: Text(label),
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
