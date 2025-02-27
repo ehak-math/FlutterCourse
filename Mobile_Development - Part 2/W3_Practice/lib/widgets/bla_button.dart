@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/theme.dart';
 
 class BlaButton extends StatelessWidget {
   final String label;
@@ -22,11 +23,11 @@ class BlaButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.all(15),
-        iconColor: isPrimary ? Colors.white : Colors.blue,
-        backgroundColor: isPrimary ? Colors.blue : Colors.white,
-        foregroundColor: isPrimary ? Colors.white : Colors.blue,
+        iconColor: isPrimary ? BlaColors.white : BlaColors.primary,
+        backgroundColor: isPrimary ? BlaColors.backGroundColor : BlaColors.white,
+        foregroundColor: isPrimary ? BlaColors.white : BlaColors.primary,
         side: BorderSide(
-          color: isPrimary ? Colors.blue : Colors.grey[300]!,
+          color: isPrimary ? BlaColors.primary : BlaColors.disabled,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
