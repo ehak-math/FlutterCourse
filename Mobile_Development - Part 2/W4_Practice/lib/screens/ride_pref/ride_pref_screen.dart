@@ -34,6 +34,7 @@ class _RidePrefScreenState extends State<RidePrefScreen> {
     await Navigator.of(context).push(AnimationUtils.createBottomToTopRoute(RidesScreen()));
   
     // 3 - After wait  - Update the state   -- TODO MAKE IT WITH STATE MANAGEMENT
+    
     setState(() { });
   }
 
