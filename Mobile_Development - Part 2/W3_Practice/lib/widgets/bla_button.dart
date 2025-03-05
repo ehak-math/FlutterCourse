@@ -4,14 +4,14 @@ import '../theme/theme.dart';
 enum BlaButtonType { primary, secondary}
 
 class BlaButton extends StatelessWidget {
-  final String label;
+  final String text;
   final VoidCallback? onPressed;
   final BlaButtonType type;
   final IconData? icon;
 
   const BlaButton(
     {super.key, 
-    required this.label,
+    required this.text,
     this.onPressed,
     this.type = BlaButtonType.primary,
     this.icon,
@@ -21,7 +21,7 @@ class BlaButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       icon: Icon(icon),
-      label: Text(label),
+      label: Text(text),
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.all(15),
