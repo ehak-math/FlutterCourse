@@ -19,14 +19,14 @@ class TestBlaButtonScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             BlaButton(
-              label: "Contact Volodia",
+              text: "Contact Volodia",
               type: BlaButtonType.secondary,
               icon: Icons.contact_support_outlined,
               onPressed: (){},
             ),
             const SizedBox(height: 15),
             BlaButton(
-              label: "Request to book",
+              text: "Request to book",
               icon: Icons.calendar_month_outlined,
               onPressed: (){},
             ),
