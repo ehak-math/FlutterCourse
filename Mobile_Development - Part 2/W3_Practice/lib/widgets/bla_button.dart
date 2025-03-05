@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import '../theme/theme.dart';
 
+enum BlaButtonType { primary, secondary}
+
 class BlaButton extends StatelessWidget {
   final String label;
-  final VoidCallback onPressed;
-  final bool isPrimary;
+  final VoidCallback? onPressed;
+  final BlaButtonType type;
   final IconData? icon;
 
   const BlaButton(
     {super.key, 
     required this.label,
-    required this.onPressed,
-    this.isPrimary = true,
+    this.onPressed,
+    this.type = BlaButtonType.primary,
     this.icon,
   });
 
@@ -23,11 +25,11 @@ class BlaButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.all(15),
-        iconColor: isPrimary ? BlaColors.white : BlaColors.primary,
-        backgroundColor: isPrimary ? BlaColors.backGroundColor : BlaColors.white,
-        foregroundColor: isPrimary ? BlaColors.white : BlaColors.primary,
+        iconColor: type == BlaButtonType.primary ? BlaColors.white : BlaColors.primary,
+        backgroundColor: type == BlaButtonType.primary ? BlaColors.backGroundColor : BlaColors.white,
+        foregroundColor: type == BlaButtonType.primary ? BlaColors.white : BlaColors.primary,
         side: BorderSide(
-          color: isPrimary ? BlaColors.primary : BlaColors.disabled,
+          color: type == BlaButtonType.primary ? BlaColors.primary : BlaColors.disabled,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),

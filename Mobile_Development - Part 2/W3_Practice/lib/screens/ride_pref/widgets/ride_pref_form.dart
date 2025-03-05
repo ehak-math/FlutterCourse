@@ -37,7 +37,10 @@ class _RidePrefFormState extends State<RidePrefForm> {
   @override
   void initState() {
     super.initState();
-    // TODO 
+    departure = widget.initRidePref?.departure;
+    departureDate = widget.initRidePref?.departureDate ?? DateTime.now();
+    arrival = widget.initRidePref?.arrival;
+    requestedSeats = widget.initRidePref?.requestedSeats ?? 1;
   }
 
   // ----------------------------------
@@ -55,11 +58,78 @@ class _RidePrefFormState extends State<RidePrefForm> {
   // ----------------------------------
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [ 
- 
-        ]);
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 5,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [ 
+            // Departure Location Selector
+            ListTile(
+              leading: const Icon(Icons.radio_button_off_rounded, color: Colors.black54),
+              title: Text(departure?.name ?? "Select Departure"),
+              trailing: GestureDetector(
+                onTap: (){},
+                child: const Icon(Icons.swap_vert, color: Colors.blue),
+              ),
+            ),
+      
+            // Arrival Location Selector
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.radio_button_checked, color: Colors.black54),
+              title: Text(arrival?.name ?? "Select Arrival"),
+            ),
+      
+            // Date Picker
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.calendar_today, color: Colors.black54),
+              title: Text(
+                "${departureDate.toLocal()}".split(' ')[0],
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              onTap: (){},
+            ),
+      
+            // Seat Selector
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.person, color: Colors.black54),
+              title: Text("$requestedSeats"),
+              trailing: DropdownButton<int>(
+                value: requestedSeats,
+                items: [1, 2, 3, 4].map((e) => DropdownMenuItem(value: e, child: Text("$e"))).toList(),
+                onChanged: (value) => setState(() => requestedSeats = value!),
+              ),
+            ),
+      
+            // Search Button
+            const SizedBox(height: 16),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                minimumSize: const Size(double.infinity, 48),
+              ),
+              onPressed: (){},
+              child: const Text("Search"),
+            ),
+           
+        ]),
+    );
   }
 }
